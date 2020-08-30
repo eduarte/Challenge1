@@ -1,15 +1,26 @@
 def read_from_file():
+
     filename = input("Please Enter File Name: ")
     with open(filename, 'r') as f:
-        return [line.strip() for line in f]
+        try:
+            return [line.strip() for line in f]
+        except IOError:
+            print("Something went wrong when reading to the file")
 
 
 def find_largest_word(words):
-    return max(words, key=len)
+    try:
+        return max(words, key=len)
+    except (ValueError, TypeError):
+        return "Ops! Something went wrong, please try again with a valid file!"
 
 
 def reverse_string(word):
-    return word[::-1]
+    try:
+        return word[::-1]
+    except (ValueError, TypeError):
+        return "Ops! Something went wrong, please try again with a valid word!"
+
 
 if __name__ == '__main__':
     list_of_words = read_from_file()
